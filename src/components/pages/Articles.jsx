@@ -1,20 +1,68 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Articles = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    // let data = [
+    //   {
+    //     _id: 1,
+    //     title: "Title 1",
+    //     content: "Content 1",
+    //   },
+    //   {
+    //     _id: 2,
+    //     title: "Title 2",
+    //     content: "Content 2",
+    //   },
+    //   {
+    //     _id: 3,
+    //     title: "Title 3",
+    //     content: "Content 3",
+    //   },
+    // ];
+
+    //AJAX Request
+
+    getArticles();
+  }, []);
+
+  const getArticles = async () => {
+    const url = "http://localhost:5000/api/list-article";
+    let request = await fetch(url, {
+      method: "GET",
+    });
+
+    let data = await request.json();
+    console.log(data);
+
+    if (data.status === "saved") {
+      setArticles(data.articles);
+    }
+  };
   return (
     <section className="content">
-      <article className="lesson-item">
-        <div className="avatar">
-          <img alt="Quijano" src={require("../../media/imgs/MrQuijano.webp")} />
-        </div>
-        <div className="data">
-          <h3 className="title">Spanish 1</h3>
-          <p className="description">technoteka.es</p>
+      {articles.map((article) => {
+        return (
+          <article key={article._id} className="lesson-item">
+            <div className="avatar">
+              <img
+                alt="Quijano"
+                src={require("../../media/imgs/MrQuijano.webp")}
+              />
+            </div>
+            <div className="data">
+              <h3 className="title">{article.title}</h3>
+              <p className="description">{article.content}</p>
 
-          <button className="edit">Edit</button>
-          <button className="delete">Delete</button>
-        </div>
-      </article>
+              <button className="edit">Edit</button>
+              <button className="delete">Delete</button>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 };
