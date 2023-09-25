@@ -1,17 +1,9 @@
-import Footer from "./components/layout/Footer";
-import Header from "./components/layout/Header";
-import Reference from "./components/pages/Reference";
-import Articles from "./components/pages/Articles";
-import Search from "./components/pages/Search";
+import Links from "./routing/links";
 
 function App() {
   return (
     <>
-      <Header />
-      <Reference />
-      <Articles />
-      <Search />
-      <Footer />
+      <Links />
     </>
   );
 }
