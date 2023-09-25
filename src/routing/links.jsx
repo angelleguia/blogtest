@@ -6,6 +6,7 @@ import Header from "../components/layout/Header";
 import Nav from "../components/layout/Nav";
 import Footer from "../components/layout/Footer";
 import Sidebar from "../components/layout/Sidebar";
+import Create from "../components/pages/Create";
 
 const Links = () => {
   return (
@@ -16,6 +17,7 @@ const Links = () => {
         <Route path="/" element={<Reference />} />
         <Route path="/home" element={<Reference />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/create-entry" element={<Create />} />
       </Routes>
       <Sidebar />
       <Footer />

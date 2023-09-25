@@ -1,32 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Reference = () => {
   return (
-    <section className="content">
-      <article className="lesson-item">
-        <h3 className="title">Spanish 1</h3>
-        <p className="description">technoteka.es</p>
-
-        <button className="edit">Edit</button>
-        <button className="delete">Delete</button>
-      </article>
-
-      <article className="lesson-item">
-        <h3 className="title">Spanish 2</h3>
-        <p className="description">technoteka.es</p>
-
-        <button className="edit">Edit</button>
-        <button className="delete">Delete</button>
-      </article>
-
-      <article className="lesson-item">
-        <h3 className="title">Spanish 3</h3>
-        <p className="description">technoteka.es</p>
-
-        <button className="edit">Edit</button>
-        <button className="delete">Delete</button>
-      </article>
-    </section>
+    <>
+      <div className="general">
+        <h1>Welcome to Technoteka</h1>
+        <p>
+          This is a blog made to learn and improve Spanish and conversational
+          Spanish skills.
+        </p>
+        <Link to="/articles" className="button">
+          Learn Spanish
+        </Link>
+      </div>
+    </>
   );
 };
 
