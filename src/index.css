@@ -248,3 +248,33 @@ input[type="button"] {
     width: 80%;
   }
 }
+
+.form {
+  background: #ddd;
+  height: 80%;
+  width: 450px;
+  margin: auto;
+  padding: 15px 15px;
+}
+
+.form input,
+.form textarea {
+  display: block;
+  width: 80%;
+  margin: 15px auto;
+  padding: 10px;
+}
+
+.form input[type="submit"] {
+  width: 40%;
+  cursor: pointer;
+  margin-bottom: 100px;
+  background-color: green;
+  color: white;
+  border: 0px;
+  border-radius: 3px;
+}
+
+.form input[type="submit"]:hover {
+  background-color: rgb(6, 150, 6);
+}

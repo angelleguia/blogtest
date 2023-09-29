@@ -1,9 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import Global from "../../helpers/Global";
+import { useMayus } from "../../hooks/useMayus";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+
+  const [mayusLetter, setMayusLetter] = useState("Our Courses");
+
+  const { mayus, concatenar } = useMayus(mayusLetter);
 
   useEffect(() => {
     // let data = [
@@ -30,7 +36,7 @@ const Articles = () => {
   }, []);
 
   const getArticles = async () => {
-    const url = "http://localhost:5000/api/list-article";
+    const url = Global.url + "list-article";
     let request = await fetch(url, {
       method: "GET",
     });
@@ -44,6 +50,15 @@ const Articles = () => {
   };
   return (
     <section className="content">
+      {mayusLetter}
+      <button
+        onClick={(e) => {
+          setMayusLetter(mayus);
+        }}
+      >
+        MAYUSC
+      </button>
+
       {articles.map((article) => {
         return (
           <article key={article._id} className="lesson-item">
