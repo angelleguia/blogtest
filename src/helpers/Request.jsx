@@ -1,25 +1,25 @@
-export const Request = async (url, method, savedData = " ") => {
-  let loading: true;
+export const Request = async (url, metode, savedData = " ") => {
+  let loading = true;
 
   let options = {
     method: "GET",
   };
 
-  if (method == "GET" || method == "DELETE") {
+  if (metode === "GET" || metode === "DELETE") {
     options = {
-      metode: method,
+      method: metode,
     };
   }
 
-  if (method == "POST" || method == "PUT") {
+  if (metode === "POST" || metode === "PUT") {
     options = {
-      metode: method,
-      body: JSON.parse(savedData),
+      method: metode,
+      body: JSON.stringify(savedData),
       headers: { "Content-Type": "application/json" },
     };
   }
 
-  const request = await fetch(url);
+  const request = await fetch(url, options);
   const data = await request.json(); //only destructure if you know the exact data.
 
   loading = false;

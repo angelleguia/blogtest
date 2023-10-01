@@ -153,14 +153,13 @@ input[type="button"] {
 }
 
 .general {
-  width: 85%;
-  max-height: 35%;
+  width: 100%;
   padding: 55px;
   padding-bottom: 75px;
   background: white;
   border-radius: 10px;
   box-shadow: 0px 0px 6px #ddd;
-  margin: 25px auto;
+  margin: 35px;
 }
 
 .general h1 {
@@ -205,9 +204,8 @@ input[type="button"] {
   box-shadow: 0px 0px 6px #ddd;
 }
 
-.lateral input[type="text"],
-.lateral input[type="text"],
-.lateral textarea {
+input[type="text"],
+textarea {
   display: block;
   margin: 0 auto;
   margin-top: 15px;
@@ -219,6 +217,59 @@ input[type="button"] {
   opacity: 4;
   outline: 0;
   border-color: transparent;
+}
+.form {
+  background: #ddd;
+  width: 450px;
+  margin: auto;
+  padding: 15px 15px;
+}
+
+.form input,
+.form textarea {
+  display: block;
+  width: 80%;
+  margin: 15px auto;
+  padding: 10px auto;
+}
+
+.form-group {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-group label {
+  display: block;
+  text-align: left;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+  border: 1px solid #ddd;
+  outline: 0;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.form input[type="submit"] {
+  width: 40%;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  border: 0px;
+  border-radius: 3px;
+}
+
+.form input[type="submit"]:hover {
+  background-color: rgb(6, 150, 6);
+}
+
+.code {
+  color: blue;
 }
 
 /*FOOTER STYLES */
@@ -247,34 +298,4 @@ input[type="button"] {
   .lesson-item {
     width: 80%;
   }
-}
-
-.form {
-  background: #ddd;
-  height: 80%;
-  width: 450px;
-  margin: auto;
-  padding: 15px 15px;
-}
-
-.form input,
-.form textarea {
-  display: block;
-  width: 80%;
-  margin: 15px auto;
-  padding: 10px;
-}
-
-.form input[type="submit"] {
-  width: 40%;
-  cursor: pointer;
-  margin-bottom: 100px;
-  background-color: green;
-  color: white;
-  border: 0px;
-  border-radius: 3px;
-}
-
-.form input[type="submit"]:hover {
-  background-color: rgb(6, 150, 6);
 }

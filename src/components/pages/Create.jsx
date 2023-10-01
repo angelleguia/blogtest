@@ -1,57 +1,71 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "../../hooks/useForm";
+import Global from "../../helpers/Global";
+import { Request } from "../../helpers/Request";
 
 const Create = () => {
-  const [courses, setCourses] = useState([]);
+  const { form, sent, changed } = useForm([]);
+  const [result, setResult] = useState(false);
 
-  const sent = (e) => {
+  const saveArticle = async (e) => {
     e.preventDefault();
-    let data = [
-      {
-        title: e.target.title.value,
-        anio: e.target.anio.value,
-        content: e.target.content.value,
-        author: e.target.author.value,
-        email: e.target.email.value,
-      },
-    ];
-    setCourses(data);
+
+    //Collect form data
+    let newArticle = form;
+    console.log(newArticle);
+
+    //Save article on Backend
+    const { data, loading } = await Request(
+      Global.url + "save-article",
+      "POST",
+      newArticle
+    );
+
+    if (data.status === "success") {
+      setResult(true);
+    }
+
+    console.log(data);
   };
 
   return (
     <div className="general">
       <h2>Create course:</h2>
-      <form onSubmit={sent} className="form">
-        <input name="title" type="text" placeholder="Title" />
-        <input name="anio" type="number" placeholder="Publication Year" />
-        <textarea name="content" placeholder="Content" />
-        <input name="author" type="text" placeholder="Author" />
-        <input name="email" type="email" placeholder="Contact Email" />
-        <input type="submit" value="send" />
-      </form>
-      <div>
-        {courses.map((course) => {
-          return (
-            <>
-              <article key={course._id} className="lesson-item">
-                <div className="avatar">
-                  <img
-                    alt="Quijano"
-                    src={require("../../media/imgs/MrQuijano.webp")}
-                  />
-                </div>
-                <div className="data">
-                  <h3 className="title">{course.title}</h3>
-                  <p className="description">{course.content}</p>
+      <pre className="code">{JSON.stringify(form)}</pre>
+      <strong>
+        {result ? "Article saved successfully." : "Article not saved"}
+      </strong>
 
-                  <button className="edit">Edit</button>
-                  <button className="delete">Delete</button>
-                </div>
-              </article>
-              <p>Course created. Go to the "Blog" tab.</p>
-            </>
-          );
-        })}
-      </div>
+      <form onSubmit={saveArticle} className="form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Title"
+            onChange={changed}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            type="text"
+            placeholder="Content"
+            onChange={changed}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="file0">Image</label>
+          <input id="file0" name="file0" type="file" placeholder="File" />
+        </div>
+
+        <input type="submit" value="Save" className="btn btn-success" />
+      </form>
     </div>
   );
 };
