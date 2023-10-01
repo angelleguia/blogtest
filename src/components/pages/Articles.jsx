@@ -3,13 +3,16 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Global from "../../helpers/Global";
 import { useMayus } from "../../hooks/useMayus";
+import { Request } from "../../helpers/Request";
+import List from "./List";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
 
-  const [mayusLetter, setMayusLetter] = useState("Our Courses");
+  const [mayusLetter, setMayusLetter] = useState("Mayus");
+  const [loading, setLoading] = useState(true);
 
-  const { mayus, concatenar } = useMayus(mayusLetter);
+  const { mayus } = useMayus(mayusLetter);
 
   useEffect(() => {
     // let data = [
@@ -36,18 +39,22 @@ const Articles = () => {
   }, []);
 
   const getArticles = async () => {
-    const url = Global.url + "list-article";
-    let request = await fetch(url, {
-      method: "GET",
-    });
+    const { data, loading } = await Request(Global.url + "list-article", "GET");
+    console.log(await Request(Global.url + "list-article", "GET"));
 
-    let data = await request.json();
-    console.log(data);
+    // let request = await fetch(url, {
+    //   method: "GET",
+    // });
+
+    // let data = await request.json();
+    // console.log(data);
 
     if (data.status === "saved") {
       setArticles(data.articles);
     }
+    setLoading(false);
   };
+
   return (
     <section className="content">
       {mayusLetter}
@@ -59,25 +66,13 @@ const Articles = () => {
         MAYUSC
       </button>
 
-      {articles.map((article) => {
-        return (
-          <article key={article._id} className="lesson-item">
-            <div className="avatar">
-              <img
-                alt="Quijano"
-                src={require("../../media/imgs/MrQuijano.webp")}
-              />
-            </div>
-            <div className="data">
-              <h3 className="title">{article.title}</h3>
-              <p className="description">{article.content}</p>
-
-              <button className="edit">Edit</button>
-              <button className="delete">Delete</button>
-            </div>
-          </article>
-        );
-      })}
+      {loading ? (
+        "Loading..."
+      ) : articles.length >= 1 ? (
+        <List articles={articles} setArticles={setArticles} />
+      ) : (
+        <h1>No Articles</h1>
+      )}
     </section>
   );
 };

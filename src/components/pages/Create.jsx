@@ -18,9 +18,9 @@ const Create = () => {
   };
 
   return (
-    <>
+    <div className="general">
+      <h2>Create course:</h2>
       <form onSubmit={sent} className="form">
-        <h2>Create course:</h2>
         <input name="title" type="text" placeholder="Title" />
         <input name="anio" type="number" placeholder="Publication Year" />
         <textarea name="content" placeholder="Content" />
@@ -52,7 +52,7 @@ const Create = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
