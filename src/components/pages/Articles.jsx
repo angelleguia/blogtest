@@ -39,8 +39,11 @@ const Articles = () => {
   }, []);
 
   const getArticles = async () => {
-    const { data, loading } = await Request(Global.url + "list-article", "GET");
-    console.log(await Request(Global.url + "list-article", "GET"));
+    const { data, loading } = await Request(
+      Global.url + "list-articles",
+      "GET"
+    );
+    console.log(await Request(Global.url + "list-articles", "GET"));
 
     // let request = await fetch(url, {
     //   method: "GET",
@@ -49,7 +52,7 @@ const Articles = () => {
     // let data = await request.json();
     // console.log(data);
 
-    if (data.status === "saved") {
+    if (data.status === "get") {
       setArticles(data.articles);
     }
     setLoading(false);
